@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhogg <mhogg@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/05 17:11:07 by mhogg             #+#    #+#             */
-/*   Updated: 2020/11/08 10:22:35 by mhogg            ###   ########.fr       */
+/*   Created: 2020/11/07 07:55:50 by mhogg             #+#    #+#             */
+/*   Updated: 2020/11/07 19:16:30 by mhogg            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+int	ft_atoi(const char *str)
 {
-	size_t	i;
+	int i;
+	int minus;
+	int num;
 
-	if (dstsize != 0)
+	i = 0;
+	minus = 0;
+	num = 0;
+	if (str[i] == '\0')
+		return (0);
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-')
+		minus = 1;
+	if ((str[i] == '-') || (str[i] == '+'))
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		i = 0;
-		while ((src[i] != '\0') && (i < dstsize - 1))
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
+		num = num * 10 + (str[i] - '0');
+		i++;
 	}
-	return (ft_strlen(src));
+	if (minus == 1)
+		num = -num;
+	return (num);
 }
