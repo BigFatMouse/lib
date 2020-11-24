@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhogg <mhogg@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/08 12:38:29 by mhogg             #+#    #+#             */
-/*   Updated: 2020/11/21 09:28:17 by mhogg            ###   ########.fr       */
+/*   Created: 2020/11/21 20:49:24 by mhogg             #+#    #+#             */
+/*   Updated: 2020/11/21 22:04:54 by mhogg            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
+	int		i;
+	int		len;
 	char	*str;
 
-	i = 0;
 	if (s == NULL)
 		return (NULL);
-	if (start < ft_strlen(s))
-	{
-		if (!(str = malloc(len + 1)))
-			return (NULL);
-		while (i < len && s[start])
-			str[i++] = s[start++];
-	}
-	else	if (!(str = malloc(1)))
+	i = 0;
+	len = ft_strlen(s);
+	str = malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
 		return (NULL);
+	while (s[i])
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
 	str[i] = '\0';
 	return (str);
 }

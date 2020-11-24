@@ -6,7 +6,7 @@
 /*   By: mhogg <mhogg@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 12:56:15 by mhogg             #+#    #+#             */
-/*   Updated: 2020/11/14 12:58:29 by mhogg            ###   ########.fr       */
+/*   Updated: 2020/11/15 22:17:53 by mhogg            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	ft_putstr_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
+	if (s)
+		while (s[i])
+			write(fd, &s[i++], 1);
 }

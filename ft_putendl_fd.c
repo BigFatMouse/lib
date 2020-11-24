@@ -6,7 +6,7 @@
 /*   By: mhogg <mhogg@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 12:56:41 by mhogg             #+#    #+#             */
-/*   Updated: 2020/11/14 12:57:48 by mhogg            ###   ########.fr       */
+/*   Updated: 2020/11/15 22:18:40 by mhogg            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	ft_putendl_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
-	while (s[i])
+	if (s)
 	{
-		write(fd, &s[i], 1);
-		i++;
+		while (s[i])
+			write(fd, &s[i++], 1);
+		write(fd, "\n", 1);
 	}
-	write(fd, "\n", 1);
 }
