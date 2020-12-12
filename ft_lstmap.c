@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhogg <mhogg@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/04 14:27:28 by mhogg             #+#    #+#             */
-/*   Updated: 2020/11/24 18:31:11 by mhogg            ###   ########.fr       */
+/*   Created: 2020/11/29 21:51:17 by mhogg             #+#    #+#             */
+/*   Updated: 2020/12/12 02:14:00 by mhogg            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	const char	*str;
+	t_list	*new;
+	t_list	*begin;
 
-	str = s;
-	while (*str)
-		str++;
-	return (str - s);
+	if (!lst || !f)
+		return (NULL);
+	begin = NULL;
+	while (lst)
+	{
+		new = ft_lstnew(f(lst->content));
+		if (!new)
+		{
+			ft_lstclear(&begin, del);
+			return (NULL);
+		}
+		lst = lst->next;
+		ft_lstadd_back(&begin, new);
+	}
+	return (begin);
 }

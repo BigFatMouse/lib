@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhogg <mhogg@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/04 14:27:28 by mhogg             #+#    #+#             */
-/*   Updated: 2020/11/24 18:31:11 by mhogg            ###   ########.fr       */
+/*   Created: 2020/11/29 18:02:30 by mhogg             #+#    #+#             */
+/*   Updated: 2020/11/29 20:22:51 by mhogg            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	const char	*str;
-
-	str = s;
-	while (*str)
-		str++;
-	return (str - s);
+	if (lst && del)
+	{
+		del(lst->content);
+		free(lst);
+	}
 }

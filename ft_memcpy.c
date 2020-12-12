@@ -6,7 +6,7 @@
 /*   By: mhogg <mhogg@student.21-school.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:09:29 by mhogg             #+#    #+#             */
-/*   Updated: 2020/11/11 12:03:44 by mhogg            ###   ########.fr       */
+/*   Updated: 2020/11/26 01:08:36 by mhogg            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	size_t				i;
 
 	if (dst == NULL && src == NULL)
-		return (0);
+		return 0;
 	str1 = src;
 	str2 = dst;
 	i = 0;
